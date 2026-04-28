@@ -2,92 +2,21 @@
 <html lang="ja">
   <head>
     <meta charset="utf-8" />
-    <title>Index · GitHub Pages</title>
+    <title>Index | mkw-page</title>
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <link rel="stylesheet" href="css/styles.css" />
-    <style>
-      html,
-      body {
-        margin: 0;
-        padding: 0;
-        height: 100%;
-        background: #02030a;
-      }
-      body {
-        font-family: "Noto Sans JP", system-ui, sans-serif;
-        color: #e6f1ff;
-        overflow-x: hidden;
-      }
-      #root,
-      .frame.v3 {
-        min-height: 100vh;
-      }
-      .frame.v3 {
-        width: 100%;
-        height: auto;
-        padding-bottom: 60px;
-      }
-      .v3-grid {
-        padding-bottom: 40px;
-      }
-      /* Responsive grid for the live site */
-      @media (max-width: 1100px) {
-        .v3-grid {
-          grid-template-columns: repeat(2, 1fr) !important;
-        }
-      }
-      @media (max-width: 680px) {
-        .v3-grid {
-          grid-template-columns: 1fr !important;
-          padding: 24px 20px 40px !important;
-        }
-        .v3-header {
-          padding: 24px 20px 16px !important;
-          flex-direction: column;
-          align-items: flex-start !important;
-          gap: 16px;
-        }
-        .v3-header .lhs h1 {
-          font-size: 32px !important;
-        }
-        .v3-header .rhs {
-          text-align: left !important;
-        }
-      }
-      .site-foot {
-        position: relative;
-        z-index: 2;
-        padding: 28px 40px 32px;
-        border-top: 1px solid rgba(255, 255, 255, 0.08);
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        font-family: "JetBrains Mono", monospace;
-        font-size: 10px;
-        letter-spacing: 0.15em;
-        color: #4a5670;
-      }
-      @media (max-width: 680px) {
-        .site-foot {
-          flex-direction: column;
-          gap: 8px;
-          padding: 24px 20px;
-          text-align: center;
-        }
-      }
-    </style>
   </head>
   <body>
     <div id="root"></div>
 
     <script
-      src="https://unpkg.com/react@18.3.1/umd/react.development.js"
-      integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L"
+      src="https://unpkg.com/react@18.3.1/umd/react.production.min.js"
+      integrity="sha384-DGyLxAyjq0f9SPpVevD6IgztCFlnMF6oW/XQGmfe+IsZ8TqEiDrcHkMLKI6fiB/Z"
       crossorigin="anonymous"
     ></script>
     <script
-      src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js"
-      integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm"
+      src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js"
+      integrity="sha384-gTGxhz21lVGYNMcdJOyq01Edg0jhn/c22nsx0kyqP0TxaV5WVdsSH1fSDUf5YJj1"
       crossorigin="anonymous"
     ></script>
     <script
@@ -111,15 +40,6 @@
         const [tweaks, setTweak] = useTweaks(TWEAK_DEFAULTS);
         const projects = window.PROJECTS;
 
-        // Apply global accent override if user picks a single hue
-        React.useEffect(() => {
-          const root = document.documentElement;
-          if (tweaks.accent === "mixed") {
-            root.style.removeProperty("--force-accent");
-          }
-        }, [tweaks.accent]);
-
-        // Override per-card accent when in single-hue mode
         const styled = React.useMemo(() => {
           if (tweaks.accent === "mixed") return projects;
           return projects.map((p) => ({ ...p, accent: tweaks.accent }));
@@ -137,6 +57,8 @@
               <span>BUILD 0xA1F · STATIC</span>
               <a
                 href="https://github.com/username"
+                target="_blank"
+                rel="noopener"
                 style={{
                   color: "oklch(0.85 0.18 200)",
                   textDecoration: "none",
@@ -146,8 +68,8 @@
               </a>
             </footer>
 
-            <TweaksPanel title="Tweaks">
-              <TweakSection title="カードの形状">
+            <TweaksPanel label="Tweaks">
+              <TweakSection label="カードの形状">
                 <TweakSlider
                   label="角丸"
                   value={tweaks.radius}
@@ -158,8 +80,9 @@
                   onChange={(v) => setTweak("radius", v)}
                 />
               </TweakSection>
-              <TweakSection title="レイアウト密度">
+              <TweakSection label="レイアウト密度">
                 <TweakRadio
+                  label="密度"
                   value={tweaks.density}
                   onChange={(v) => setTweak("density", v)}
                   options={[
@@ -169,8 +92,9 @@
                   ]}
                 />
               </TweakSection>
-              <TweakSection title="アクセントカラー">
+              <TweakSection label="アクセントカラー">
                 <TweakRadio
+                  label="カラー"
                   value={tweaks.accent}
                   onChange={(v) => setTweak("accent", v)}
                   options={[
