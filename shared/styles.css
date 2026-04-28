@@ -230,6 +230,79 @@ body {
   letter-spacing: 0.15em;
   color: var(--fg-faint);
 }
+.site-nav {
+  display: flex;
+  gap: 18px;
+}
+.site-nav a {
+  color: var(--fg-dim);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.site-nav a:hover {
+  color: var(--cyan);
+  text-shadow: 0 0 10px var(--cyan);
+}
+
+/* ─── Sub page ─────────────────────── */
+.subpage {
+  min-height: 100vh;
+  padding: 64px 40px 40px;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-0);
+}
+.subpage .eyebrow {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.3em;
+  color: var(--cyan);
+  text-shadow: 0 0 10px var(--cyan);
+}
+.subpage h1 {
+  font-family: var(--display);
+  font-size: 48px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  margin: 8px 0 32px;
+  background: linear-gradient(135deg, #fff 30%, var(--cyan) 70%, var(--magenta) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.subpage .body {
+  max-width: 720px;
+  font-size: 14px;
+  line-height: 1.9;
+  color: var(--fg-dim);
+}
+.subpage .body p + p {
+  margin-top: 16px;
+}
+.subpage .back {
+  margin-top: auto;
+  padding-top: 48px;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.2em;
+}
+.subpage .back a {
+  color: var(--fg-dim);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.subpage .back a:hover {
+  color: var(--cyan);
+  text-shadow: 0 0 10px var(--cyan);
+}
+@media (max-width: 680px) {
+  .subpage {
+    padding: 40px 20px 24px;
+  }
+  .subpage h1 {
+    font-size: 36px;
+  }
+}
 
 /* ─── Responsive ─────────────────────── */
 @media (max-width: 1100px) {

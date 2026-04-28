@@ -24,7 +24,7 @@ function V3Hologram({ projects, density, radius }) {
           <a
             key={p.id}
             className="v3-card"
-            href={`https://${p.repo}.github.io/`}
+            href={p.href}
             style={{ '--card-accent': ACCENT_VAR[p.accent] }}
           >
             <div className="topline">
